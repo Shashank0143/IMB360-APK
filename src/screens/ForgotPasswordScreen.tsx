@@ -4,57 +4,54 @@ import {
   View,
   Text,
   StyleSheet,
-  Image,
   TouchableOpacity,
+  Image,
+  StatusBar,
 } from 'react-native';
 
-import ScreenWrapper from '../components/ScreenWrapper';
-import AuthInput from '../components/AuthInput';
-import AuthButton from '../components/AuthButton';
+import LinearGradient from 'react-native-linear-gradient';
 
-const ForgotPasswordScreen = ({
-  navigation,
-}: any) => {
+import {
+  useNavigation,
+} from '@react-navigation/native';
+
+import FloatingInput from '../components/FloatingInput';
+
+const ForgotPasswordScreen = () => {
+
+  const navigation = useNavigation<any>();
 
   const [email, setEmail] =
     useState('');
 
-  const handleSendCode = () => {
-
-    if (!email) {
-      return;
-    }
-
-    navigation.navigate(
-      'OtpVerification',
-      {
-        email,
-      },
-    );
-  };
-
   return (
-    <ScreenWrapper>
+    <View style={styles.container}>
 
-      {/* BACK BUTTON */}
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor="#000"
+      />
+
+      {/* BACK */}
 
       <TouchableOpacity
         style={styles.backButton}
         onPress={() => navigation.goBack()}
       >
+
         <Text style={styles.backText}>
           ←
         </Text>
+
       </TouchableOpacity>
 
       {/* LOGO */}
 
-      <View style={styles.logoContainer}>
-        <Image
-          source={require('../assets/images/IMB360.png')}
-          style={styles.logo}
-        />
-      </View>
+      <Image
+        source={require('../assets/images/IMB360.png')}
+        style={styles.logo}
+        resizeMode="contain"
+      />
 
       {/* TITLE */}
 
@@ -62,83 +59,110 @@ const ForgotPasswordScreen = ({
         FORGOT PASSWORD
       </Text>
 
-      {/* SUBTITLE */}
-
-      <Text style={styles.subtitle}>
-        Enter your email and we'll send
-        a verification code instantly.
+      <Text style={styles.description}>
+        Enter your email and we'll send a
+        verification code instantly.
       </Text>
 
-      {/* FORM */}
+      {/* EMAIL */}
 
-      <View style={styles.form}>
+      <FloatingInput
+        label="Email Address *"
+        value={email}
+        onChangeText={setEmail}
+        keyboardType="email-address"
+      />
 
-        <AuthInput
-          label="Email address*"
-          placeholder="Enter email"
-          value={email}
-          onChangeText={setEmail}
-        />
+      {/* BUTTON */}
 
-        <AuthButton
-          title="Send Code"
-          onPress={handleSendCode}
-        />
+      <TouchableOpacity
+        activeOpacity={0.9}
+        style={styles.buttonContainer}
+      >
 
-      </View>
+        <LinearGradient
+          colors={['#00CFFF', '#41FF7A']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          style={styles.button}
+        >
 
-    </ScreenWrapper>
+          <Text style={styles.buttonText}>
+            Send Code
+          </Text>
+
+        </LinearGradient>
+
+      </TouchableOpacity>
+
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
 
+  container: {
+    flex: 1,
+    backgroundColor: '#000',
+    paddingHorizontal: 24,
+    paddingTop: 20,
+  },
+
   backButton: {
-    width: 42,
-    height: 42,
-    borderRadius: 21,
+    width: 38,
+    height: 38,
+    borderRadius: 20,
     borderWidth: 1,
-    borderColor: '#2A2A2A',
+    borderColor: '#444',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 15,
   },
 
   backText: {
     color: '#FFF',
-    fontSize: 24,
-    fontWeight: '600',
-  },
-
-  logoContainer: {
-    alignItems: 'center',
-    marginTop: 20,
+    fontSize: 22,
   },
 
   logo: {
-    width: 220,
-    height: 90,
-    resizeMode: 'contain',
+    width: 170,
+    height: 55,
+    alignSelf: 'center',
+    marginTop: 10,
   },
 
   title: {
-    color: '#00D1D1',
-    fontSize: 32,
+    color: '#00D5FF',
+    fontSize: 28,
     fontWeight: '900',
     textAlign: 'center',
-    marginTop: 25,
+    marginTop: 18,
   },
 
-  subtitle: {
-    color: '#8A8A8A',
+  description: {
+    color: '#A5A5A5',
     textAlign: 'center',
-    marginTop: 12,
-    fontSize: 14,
-    lineHeight: 24,
+    marginTop: 10,
+    lineHeight: 22,
+    fontSize: 13,
+    paddingHorizontal: 18,
+    marginBottom: 14,
   },
 
-  form: {
-    marginTop: 80,
+  buttonContainer: {
+    marginTop: 28,
+  },
+
+  button: {
+    height: 54,
+    borderRadius: 14,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  buttonText: {
+    color: '#000',
+    fontWeight: '900',
+    fontSize: 16,
   },
 
 });
