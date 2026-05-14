@@ -8,8 +8,10 @@ import {
   Image,
 } from 'react-native'
 
-
 import { SafeAreaView } from 'react-native-safe-area-context'
+
+import GradientButton from '../../components/GradientButton'
+import GradientText from '../../components/GradientText'
 
 export default function Splash3({ navigation }: any) {
   return (
@@ -24,19 +26,23 @@ export default function Splash3({ navigation }: any) {
 
       <View style={styles.topContainer}>
         <TouchableOpacity
-          style={styles.backButton}
           onPress={() => navigation.goBack()}
         >
-          <Text style={styles.backText}>←</Text>
+          <Text style={styles.backText}>
+            ←
+          </Text>
         </TouchableOpacity>
 
         <TouchableOpacity>
-          <Text style={styles.skipText}>Skip</Text>
+          <Text style={styles.skipText}>
+            Skip
+          </Text>
         </TouchableOpacity>
       </View>
 
-
       <View style={styles.imageContainer}>
+        <View style={styles.blob} />
+
         <Image
           source={require('../../assets/images/splash3.png')}
           style={styles.image}
@@ -44,25 +50,28 @@ export default function Splash3({ navigation }: any) {
         />
       </View>
 
-
       <View style={styles.bottomContainer}>
         <Text style={styles.title}>
-          Ready to Redefine Influence?
+          READY TO SCALE
         </Text>
 
-        <Text style={styles.description}>
-          Sign up free for brands or
-          creators - explore demos,
-          match instantly, and earn real
-          results.
-         </Text>
+        <GradientText text="YOUR INFLUENCE?" />
 
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate('Splash3')}
-        >
-          <Text style={styles.buttonText}>Get Started</Text>
-        </TouchableOpacity>
+        <Text style={styles.description}>
+          Find the right creators,
+          build impactful collaborations,
+          and grow your brand with confidence.
+        </Text>
+
+        <GradientButton
+          title="Get Started"
+          onPress={() =>
+            navigation.navigate('Login')
+          }
+          style={{
+            width: 180
+          }}
+        />
       </View>
     </SafeAreaView>
   )
@@ -71,53 +80,52 @@ export default function Splash3({ navigation }: any) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#E8EFD6',
+    backgroundColor: '#000000',
   },
 
   topContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 24,
-    marginTop: 25,
-  },
-
-  backButton: {
-    width: 35,
-    height: 35,
-    borderRadius: 17,
-    borderWidth: 2,
-    borderColor: '#000',
-    justifyContent: 'center',
-    alignItems: 'center',
+    marginTop: 30,
+    paddingHorizontal: 40,
   },
 
   backText: {
     fontSize: 40,
     fontWeight: 'bold',
-    color: '#000',
+    color: '#FFFFFF',
     marginTop: -20,
-    marginLeft: -5
+    marginLeft: -5,
   },
 
   skipText: {
     fontSize: 18,
-    fontFamily: 'DMSans-Bold',
-    color: '#000',
+    fontFamily: 'Poppins',
+    color: '#FFFFFF',
     fontWeight: 'bold',
-    marginRight: 10
   },
 
   imageContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: -40,
+    marginTop: 20,
+  },
+
+  blob: {
+    position: 'absolute',
+    width: 0,
+    height: 0,
+    backgroundColor: '#D6E1BB',
+    borderRadius: 100,
+    transform: [{ rotate: '-15deg' }],
   },
 
   image: {
-    width: 400,
+    width: 375,
     height: 400,
+    zIndex: 2,
   },
 
   bottomContainer: {
@@ -126,53 +134,20 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: 20,
-    fontFamily: 'Poppins-Bold',
-    color: '#000',
-    lineHeight: 28,
-    marginBottom: 5,
-    marginTop: -78,
-    fontWeight: 'bold',
-    width: '90%',
-    marginLeft: 20
+    fontSize: 24,
+    fontFamily: 'Poppins-SemiBold',
+    color: '#FFFFFF',
+    lineHeight: 30,
+    marginLeft: 20,
   },
 
   description: {
-    fontSize: 16,
-    fontFamily: 'Inter-Regular',
-    color: '#111',
-    lineHeight: 22,
-    width: '60%',
-    marginBottom: 49,
-    marginLeft: 20
-
-  },
-
-  button: {
-    backgroundColor: '#00ACB3',
-    width: 130,
-    height: 45,
-    borderRadius: 13,
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
-
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.15,
-    shadowRadius: 6,
-
-    elevation: 5,
-    marginTop: -10 ,
-    marginBottom: 50
-  },
-
-  buttonText: {
-    color: '#fff',
     fontSize: 18,
-    fontFamily: 'Inter-SemiBold',
+    fontFamily: 'Inter-Regular',
+    color: '#808080',
+    width: '73%',
+    marginBottom: 90,
+    marginTop: 10,
+    marginLeft: 20,
   },
 })

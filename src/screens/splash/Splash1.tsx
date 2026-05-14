@@ -10,7 +10,12 @@ import {
 
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-export default function Splash1({ navigation }: any) {
+import GradientButton from '../../components/GradientButton'
+import GradientText from '../../components/GradientText'
+
+
+ export default function Splash1
+({ navigation }: any) {
   return (
     <SafeAreaView
       style={styles.container}
@@ -22,7 +27,9 @@ export default function Splash1({ navigation }: any) {
       />
 
       <TouchableOpacity style={styles.skipButton}>
-        <Text style={styles.skipText}>Skip</Text>
+        <Text style={styles.skipText}>
+          Skip
+        </Text>
       </TouchableOpacity>
 
       <View style={styles.imageContainer}>
@@ -33,26 +40,26 @@ export default function Splash1({ navigation }: any) {
           style={styles.image}
           resizeMode="contain"
         />
-
-        
       </View>
 
       <View style={styles.bottomContainer}>
         <Text style={styles.title}>
-          Find Creators That Convert
+          FIND CREATORS FOR
         </Text>
+
+        <GradientText text="YOUR BRAND" />
 
         <Text style={styles.description}>
-          Match with 50K+ verified influencers who align
-          with your brand - launch campaigns in 24 hours.
+          Discover creators that align with your
+          brand, audience, and campaign goals.
         </Text>
 
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate('Splash2')}
-        >
-          <Text style={styles.buttonText}>Next</Text>
-        </TouchableOpacity>
+        <GradientButton
+          title="Next"
+          onPress={() =>
+            navigation.navigate('Splash2')
+          }
+        />
       </View>
     </SafeAreaView>
   )
@@ -61,7 +68,7 @@ export default function Splash1({ navigation }: any) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#E8EFD6',
+    backgroundColor: '#000000',
   },
 
   skipButton: {
@@ -73,8 +80,8 @@ const styles = StyleSheet.create({
 
   skipText: {
     fontSize: 18,
-    fontFamily: 'DMSans-Bold',
-    color: '#000',
+    fontFamily: 'Poppins',
+    color: '#FFFFFF',
     fontWeight: 'bold',
   },
 
@@ -83,6 +90,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 20,
+    marginBottom: -20,
   },
 
   blob: {
@@ -95,9 +103,10 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    width: 361,
-    height: 385,
+    width: 550,
+    height: 550,
     zIndex: 2,
+    marginTop: 80
   },
 
   dot: {
@@ -114,51 +123,22 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: 20,
+    fontSize: 24,
     fontFamily: 'Poppins-Bold',
-    color: '#000',
-    lineHeight: 28,
-    marginBottom: 150,
+    color: '#FFFFFF',
+    lineHeight: 30,
     fontWeight: 'bold',
-    marginLeft: 40
+    marginLeft: 20,
   },
-  
+
   description: {
-    fontSize: 16,
+    fontSize: 18,
     fontFamily: 'Inter-Regular',
-    color: '#111',
+    color: '#808080',
     lineHeight: 20,
     width: '65%',
-    marginBottom: 80,
-    marginTop: -135,
-    marginLeft: 42
+    marginBottom: 110,
+    marginTop: 20,
+    marginLeft: 20,
   },
-
-  button: {
-    backgroundColor: '#00ACB3',
-    width: 107,
-    height: 45,
-    borderRadius: 13,
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
-
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.15,
-    shadowRadius: 6,
-
-    elevation: 5,
-    marginBottom:50,
-    marginTop: -50
-  },
-
-  buttonText: {
-    color: '#fff',
-    fontSize: 18,
-    fontFamily: 'Inter-SemiBold',
-  },
-})
+})  
